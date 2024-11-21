@@ -5,10 +5,10 @@ const nextConfig: NextConfig = {
 };
 
 module.exports = {
-  experimental: {
-    appDir: true,
+  devIndicators: {
+    buildActivity: false, // Disable the build activity indicator
+    appDir: false, // Disable the app directory indicator
   },
 };
-
 
 export default nextConfig;
