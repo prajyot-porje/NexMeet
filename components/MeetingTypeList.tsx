@@ -6,12 +6,60 @@ import { IoVideocamOutline } from 'react-icons/io5'
 import { MdOutlineCalendarToday } from 'react-icons/md'
 import { TiUserAdd } from 'react-icons/ti'
 import MeetingModal from './MeetingModal'
+import { useUser } from '@clerk/nextjs'
+import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk'
+import { useToast } from "@/hooks/use-toast"
+
 
 const MeetingTypeList = () => {
+    const { toast } = useToast();
     const router = useRouter();
     const [MeetingState, setMeetingState] = useState< 'isScheduleMeeting' | 'isInstantMeeting' | 'isJoiningMeeting' | undefined>()
-    const createMeeting = ()=>{
+    const {user} = useUser();
+    const client = useStreamVideoClient();
+    const [Values , SetValues]= useState({
+        dateTime : new Date(),
+        desc : '',
+        link : ''
+    });
 
+    const[CallDetails , setCallDetails] = useState<Call>();
+
+    const createMeeting = async()=>{
+        if(!user || !client) return ;
+
+        try {
+            if(!Values.dateTime){
+                toast({title: "Please Select a Date And Time"});
+                return;
+            }
+            const id = crypto.randomUUID();
+            const call = client.call('default',id);
+            if(!call) throw new Error('Failed to Create CAll');
+            const startsAt =  Values.dateTime.toISOString() || new Date(Date.now()).toISOString() ;
+            const description = Values.desc || 'Instant Meeting';
+            await call.getOrCreate({
+                data:{
+                    starts_at : startsAt,
+                    custom:{
+                        description
+                    }
+                }
+            })     
+            setCallDetails(call);
+            if(!Values.desc){
+                router.push(`/meeting/${call.id}`)
+            }      
+
+            toast({
+                title: "Meeting Created",
+              })   
+
+        } catch (error) {
+            toast({
+                title: "Failed to Create Meeting",
+              })           
+        }
     }
   return (
     <section className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4' >
