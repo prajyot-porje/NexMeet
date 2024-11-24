@@ -1,9 +1,12 @@
 import { cn } from "@/lib/utils";
 import {
   CallControls,
+  CallingState,
   CallParticipantsList,
+  CallStatsButton,
   PaginatedGridLayout,
   SpeakerLayout,
+  useCallStateHooks,
 } from "@stream-io/video-react-sdk";
 import React, { useState } from "react";
 import {
@@ -14,17 +17,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FaList } from "react-icons/fa";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
-import { Button } from "./ui/button";
 import { Users } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import EndCallButton from "./EndCallButton";
+import Loader from "./ui/Loader";
 
 type meetingTypeList = "speaker-left" | "speaker-right" | "grid";
 
 const MeetingRoom = () => {
   const searchParams = useSearchParams();
-  const isPersonalRoom = searchParams.get('personal')
+  const isPersonalRoom = !!searchParams.get('personal')
   const [layout, setLayout] = useState<meetingTypeList>("speaker-left");
   const [showParticipants, setShowParticipants] = useState(false);
+
+  const { useCallCallingState } = useCallStateHooks();
+  const callingState = useCallCallingState();
+
+  if(callingState !== CallingState.JOINED ) return <Loader/>
+
   const CallLayout = () => {
     switch (layout) {
       case "grid":
@@ -49,7 +59,7 @@ const MeetingRoom = () => {
           <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
       </div>
-      <div className="fixed bottom-0 flex w-full items-center justify-center gap-5">
+      <div className="fixed bottom-0 flex w-full items-center justify-center mb-4 flex-wrap gap-5">
         <CallControls />
 
         <DropdownMenu>
@@ -74,11 +84,13 @@ const MeetingRoom = () => {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button onClick={()=> setShowParticipants((prev)=>!prev)}>
+        <CallStatsButton/>
+        <button onClick={()=> setShowParticipants((prev)=>!prev)}>
           <div className=" cursor-pointer rounded-2xl px-4 py-2 bg-[#19232d] hover:bg-[#4c535b]">
             <Users size={20} className="text-white"/>
           </div>
-        </Button>
+        </button>
+        {!isPersonalRoom && <EndCallButton/>}
       </div>
     </section>
   );
