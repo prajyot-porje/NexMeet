@@ -95,5 +95,4 @@ const MeetingRoom = () => {
     </section>
   );
 };
-
 export default MeetingRoom;
