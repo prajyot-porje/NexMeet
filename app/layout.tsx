@@ -15,7 +15,6 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
 export const metadata: Metadata = {
   title: "NexMeet",
   description: "Video Conferencing Website",
