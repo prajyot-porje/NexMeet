@@ -26,8 +26,7 @@ const MeetingSetup = ({setIsSetupComplete}:{setIsSetupComplete:(value: boolean)=
                  type='checkbox'
                  checked={isMicCamToggledOn}
                  onChange={(e)=>setisMicCamToggledOn(e.target.checked)}
-                />
-                Join Meeting with Camera and Microphone off
+                />                Join Meeting with Camera and Microphone off
             </label>
             <DeviceSettings/>
         </div>
