@@ -17,7 +17,6 @@ import { useEffect, useState } from "react"
             if(calls.length >0) setCall(calls[0]);
             setisCallLoading(false);
         }
-
         loadCall();
     },[client , id])
 
