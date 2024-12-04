@@ -9,5 +9,4 @@ const Upcoming = () => {
     </section>
   )
 }
-
 export default Upcoming
