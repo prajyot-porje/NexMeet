@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import '@stream-io/video-react-sdk/dist/css/styles.css';
 import { Toaster } from "@/components/ui/toaster"
+import 'react-datepicker/dist/react-datepicker.css'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,9 +19,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "NexMeet",
   description: "Video Conferencing Website",
-  icons:{
-    icon:'/logo.png'
-  }
+  icons: "/logo.png",
 };
 export default function RootLayout({
   children,

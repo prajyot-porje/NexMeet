@@ -1,6 +1,11 @@
 import Panel from '@/components/panel'
+import { Metadata } from 'next';
 import React, { ReactNode } from 'react'
-
+export const metadata: Metadata = {
+  title: "NexMeet",
+  description: "Video Conferencing Website",
+  icons: "/logo.png",
+};
 const HomeLayout = ({children}:{children:ReactNode}) => {
   return (
     <main className=' relative'>

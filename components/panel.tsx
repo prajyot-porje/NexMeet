@@ -1,10 +1,4 @@
 "use client";
-import {
-  IconArrowLeft,
-  IconArrowRight,
-  IconBrandTabler,
-  IconUserBolt,
-} from "@tabler/icons-react";
 import React, { useState, useEffect } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/Sidebar";
 import { Link } from "lucide-react";
