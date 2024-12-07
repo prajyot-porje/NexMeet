@@ -64,7 +64,7 @@ const MeetingTypeList = () => {
         }
     }
     
-    const MeetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${CallDetails ?.id}`
+    const MeetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${CallDetails?.id}`
 
   return (
     <section className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4' >
@@ -118,7 +118,7 @@ const MeetingTypeList = () => {
             isOpen={MeetingState === 'isScheduleMeeting'}
             onClose={()=>setMeetingState(undefined)}
             title = "Create Meeting"
-            handleClick ={createMeeting}
+            handleClick={createMeeting}
             >
                 <div className='flex flex-col gap-2.5'>
                     <label className='text-base text-sky-2 text-normal leading-[22px]'>
@@ -153,7 +153,7 @@ const MeetingTypeList = () => {
                 className = "text-center"
                 handleClick ={()=>{
                     navigator.clipboard.writeText(MeetingLink);
-                    toast({title : 'Link Copied'});
+                    toast({title :'Link Copied'});
                 }}
                 img='/checked.svg'
                 buttonIcon={<MdContentCopy/>}
