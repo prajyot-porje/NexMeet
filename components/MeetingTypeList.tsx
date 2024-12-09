@@ -63,7 +63,6 @@ const MeetingTypeList = () => {
               })           
         }
     }
-    
     const MeetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${CallDetails?.id}`
 
   return (
