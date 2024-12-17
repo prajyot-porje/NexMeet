@@ -46,7 +46,12 @@ const CallList = ({type}:{type: 'upcoming' | 'ended' | 'recordings'}) => {
   return (
     <div className='grid grid-cols-1 gap-5 xl:grid-cols-2'>
       {calls && calls.length > 0 ? calls.map((meeting : Call | CallRecording)=>(
-        <MeetingCard/>
+        <MeetingCard
+         key={(meeting as Call).id}
+         icon={type}
+         title= {(meeting as Call).state.custom.description.substring(0,30) || 'No Description !!'}
+         
+        />
       )): (
         <h1>{NocallsMessage}</h1>
       )}
