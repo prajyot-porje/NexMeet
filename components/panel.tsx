@@ -39,7 +39,6 @@ const Panel = () => {
       icon: <MdAdd className="text-white h-7 w-7  flex-shrink-0" />,
     },
   ];
-
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
