@@ -26,19 +26,19 @@ NexMeet is a feature-rich video conferencing application designed for seamless o
 - **Frontend:**
   - [Next.js](https://nextjs.org/): ⚛️ React-based framework for server-side rendering and static site generation.
   - [Tailwind CSS](https://tailwindcss.com/): 🎨 Utility-first CSS framework for styling.
-  - [ShadCN UI](https://shadcn.dev/) & [Acernity UI](https://acernityui.com/): 🖌️ UI component libraries for a polished design.
+  - [ShadCN UI](https://ui.shadcn.com/) & [Acernity UI](https://ui.aceternity.com/): 🖌️ UI component libraries for a polished design.
 
 - **Video Conferencing:**
   - [Stream](https://getstream.io/): 📡 Real-time video and audio communication.
 
 - **Authentication:**
-  - [Clerk](https://clerk.dev/): 🔐 User authentication and management.
+  - [Clerk](https://clerk.com/docs): 🔐 User authentication and management.
 
 ## Installation 🧑‍💻
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/NexMeet.git
+   git clone https://github.com/prajyot-porje/NexMeet.git
    ```
 
 2. Navigate to the project directory:

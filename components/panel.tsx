@@ -1,10 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/Sidebar";
-import { Link } from "lucide-react";
-import { motion } from "framer-motion";
 import { CgChevronLeftR, CgChevronRightR } from "react-icons/cg";
-import { BiVideoRecording } from "react-icons/bi";
 import { IoAdd, IoHomeOutline, IoVideocamOutline } from "react-icons/io5";
 import { MdAdd } from "react-icons/md";
 import { usePathname } from "next/navigation";
@@ -44,7 +41,7 @@ const Panel = () => {
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    setIsHydrated(true); // Set hydration state to true after the component mounts
+    setIsHydrated(true); 
   }, []);
 
   return (
