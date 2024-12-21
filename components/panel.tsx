@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/Sidebar";
 import { CgChevronLeftR, CgChevronRightR } from "react-icons/cg";
-import { IoAdd, IoHomeOutline, IoVideocamOutline } from "react-icons/io5";
+import { IoHomeOutline, IoVideocamOutline } from "react-icons/io5";
 import { MdAdd } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { SignedIn, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+import Image from "next/image";
 
 const Panel = () => {
   const links = [
@@ -33,46 +35,51 @@ const Panel = () => {
     {
       label: "Personal Rooms",
       href: "/personal-room",
-      icon: <MdAdd className="text-white h-7 w-7  flex-shrink-0" />,
+      icon: <MdAdd className="text-white h-7 w-7 flex-shrink-0" />,
     },
   ];
+
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    setIsHydrated(true); 
+    setIsHydrated(true);
   }, []);
 
   return (
     <div className="h-screen text-white bg-dark-1">
       <Sidebar open={open} setOpen={setOpen}>
-        <SidebarBody className="">
+        <SidebarBody>
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {isHydrated &&
               (open ? (
-                <a href="/" className="flex gap-x-4 text-2xl font-semibold">
-                  <img
+                <Link href="/" className="flex gap-x-4 text-2xl font-semibold">
+                  <Image
                     src="/logo.png"
                     alt="cover"
-                    className=" h-10 w-10 flex-shrink-0"
-                  />{" "}
-                  <div>NexMeet </div>
-                </a>
+                    width={40}
+                    height={40}
+                    className="flex-shrink-0"
+                  />
+                  <div>NexMeet</div>
+                </Link>
               ) : (
-                <img
+                <Image
                   src="/logo.png"
                   alt="cover"
-                  className=" h-10 w-10 flex-shrink-0"
+                  width={40}
+                  height={40}
+                  className="flex-shrink-0"
                 />
               ))}
-            <div className="mt-8 text-white flex flex-col gap-x-4  gap-2">
+            <div className="mt-8 text-white flex flex-col gap-x-4 gap-2">
               {links.map((link, idx) => {
                 const isActive = pathname === link.href;
                 return (
                   <SidebarLink
                     className={cn("px-2 rounded-xl", {
-                      "bg-blue-1  ": isActive,
+                      "bg-blue-1": isActive,
                     })}
                     key={idx}
                     link={link}
@@ -88,7 +95,7 @@ const Panel = () => {
                 href: "",
                 icon: (
                   <SignedIn>
-                    <UserButton  />
+                    <UserButton />
                   </SignedIn>
                 ),
               }}
@@ -99,4 +106,5 @@ const Panel = () => {
     </div>
   );
 };
+
 export default Panel;
