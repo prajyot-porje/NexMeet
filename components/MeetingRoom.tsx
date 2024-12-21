@@ -18,7 +18,7 @@ import {
 import { FaList } from "react-icons/fa";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 import { Users } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import EndCallButton from "./EndCallButton";
 import Loader from "./ui/Loader";
 
@@ -29,7 +29,7 @@ const MeetingRoom = () => {
   const isPersonalRoom = !!searchParams.get('personal')
   const [layout, setLayout] = useState<meetingTypeList>("speaker-left");
   const [showParticipants, setShowParticipants] = useState(false);
-
+  const router = useRouter();
   const { useCallCallingState } = useCallStateHooks();
   const callingState = useCallCallingState();
 
@@ -60,7 +60,8 @@ const MeetingRoom = () => {
         </div>
       </div>
       <div className="fixed bottom-0 flex w-full items-center justify-center mb-4 flex-wrap gap-5">
-        <CallControls />
+
+        <CallControls onLeave={()=> router.push('/')} />
 
         <DropdownMenu>
           <div className="flex items-center">

@@ -7,7 +7,7 @@ const Upcoming = () => {
       <h1 className='text-3xl font-bold'>
         Upcoming section 
       </h1>
-      <CallList type = 'upcoming'/>
+      <CallList key={1} type = 'upcoming'/>
     </section>
   )
 }

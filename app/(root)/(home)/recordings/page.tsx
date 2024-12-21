@@ -1,3 +1,4 @@
+import CallList from '@/components/CallList'
 import React from 'react'
 
 const Recordings = () => {
@@ -5,8 +6,8 @@ const Recordings = () => {
     <section className='flex flex-col size-full gap-10 text-white'>
       <h1 className='text-3xl font-bold'>
         Recordings
-        
       </h1>
+      <CallList key={3} type='recordings'/>
     </section>
   )
 }

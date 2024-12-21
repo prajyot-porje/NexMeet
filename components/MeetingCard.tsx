@@ -4,10 +4,12 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
-import { avatarImages } from "@/constants";
-import { useToast } from "./ui/use-toast";
+import { avatarImages } from "@/constants"
+
 import { CgChevronLeftR, CgChevronRightR } from "react-icons/cg";
 import { IoVideocamOutline } from "react-icons/io5";
+import { useToast } from "@/hooks/use-toast";
+import { MdOutlineContentCopy, MdOutlinePlayCircleOutline } from "react-icons/md";
 
 interface MeetingCardProps {
   title: string;
@@ -33,7 +35,7 @@ const MeetingCard = ({
   const { toast } = useToast();
 
   return (
-    <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-dark-1 px-5 py-8 xl:max-w-[568px]">
+    <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-dark-1 px-5 py-8 xl:max-w-full">
       <article className="flex flex-col gap-5">
         {icon === 'ended' ? (<CgChevronLeftR className="text-white h-7 w-7 flex-shrink-0" />):icon==='upcoming'?(<CgChevronRightR className="text-white h-7 w-7 flex-shrink-0" />):(<IoVideocamOutline className="text-white h-7 w-7 flex-shrink-0" />)}
         <div className="flex justify-between">
@@ -63,10 +65,8 @@ const MeetingCard = ({
         {!isPreviousMeeting && (
           <div className="flex gap-2">
             <Button onClick={handleClick} className="rounded bg-blue-1 px-6">
-              {buttonIcon1 && (
-                <Image src={buttonIcon1} alt="feature" width={20} height={20} />
-              )}
-              &nbsp; {buttonText}
+              {buttonIcon1==='recordings'? <MdOutlinePlayCircleOutline height={50} width={50}/> : undefined}
+               {buttonText}
             </Button>
             <Button
               onClick={() => {
@@ -77,12 +77,7 @@ const MeetingCard = ({
               }}
               className="bg-dark-4 px-6"
             >
-              <Image
-                src="/icons/copy.svg"
-                alt="feature"
-                width={20}
-                height={20}
-              />
+              <MdOutlineContentCopy height={20} width={20}/>
               &nbsp; Copy Link
             </Button>
           </div>
