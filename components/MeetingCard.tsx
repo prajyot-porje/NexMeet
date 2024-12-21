@@ -1,11 +1,9 @@
 "use client";
 
 import Image from "next/image";
-
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { avatarImages } from "@/constants"
-
 import { CgChevronLeftR, CgChevronRightR } from "react-icons/cg";
 import { IoVideocamOutline } from "react-icons/io5";
 import { useToast } from "@/hooks/use-toast";

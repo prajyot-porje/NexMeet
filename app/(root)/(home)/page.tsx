@@ -1,4 +1,3 @@
-import MeetingModal from '@/components/MeetingModal';
 import MeetingTypeList from '@/components/MeetingTypeList';
 
 const Home = () => {
