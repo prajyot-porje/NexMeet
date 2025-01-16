@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
-
 const Panel = () => {
   const links = [
     {
