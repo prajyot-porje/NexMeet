@@ -1,14 +1,15 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "./ui/Sidebar";
-import { CgChevronLeftR, CgChevronRightR } from "react-icons/cg";
-import { IoHomeOutline, IoVideocamOutline } from "react-icons/io5";
-import { MdAdd } from "react-icons/md";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { SignedIn, UserButton } from "@clerk/nextjs";
-import Link from "next/link";
-import Image from "next/image";
+"use client"
+import { useState, useEffect } from "react"
+import { Sidebar, SidebarBody, SidebarLink } from "./ui/Sidebar"
+import { CgChevronLeftR, CgChevronRightR } from "react-icons/cg"
+import { IoHomeOutline, IoVideocamOutline } from "react-icons/io5"
+import { MdAdd } from "react-icons/md"
+import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
+import { SignedIn, UserButton } from "@clerk/nextjs"
+import Link from "next/link"
+import Image from "next/image"
+
 const Panel = () => {
   const links = [
     {
@@ -36,15 +37,15 @@ const Panel = () => {
       href: "/personal-room",
       icon: <MdAdd className="text-white h-7 w-7 flex-shrink-0" />,
     },
-  ];
+  ]
 
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const [isHydrated, setIsHydrated] = useState(false);
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
 
   useEffect(() => {
-    setIsHydrated(true);
-  }, []);
+    setIsHydrated(true)
+  }, [])
 
   return (
     <div className="h-screen text-white bg-dark-1">
@@ -53,37 +54,29 @@ const Panel = () => {
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {isHydrated &&
               (open ? (
-                <Link href="/" className="flex gap-x-4 text-2xl font-semibold">
-                  <Image
-                    src="/logo.png"
-                    alt="cover"
-                    width={40}
-                    height={40}
-                    className="flex-shrink-0"
-                  />
+                <Link
+                  href="/"
+                  className="flex gap-x-4 text-2xl font-semibold transition-all duration-200 hover:opacity-80"
+                >
+                  <Image src="/logo.png" alt="cover" width={40} height={40} className="flex-shrink-0 rounded-lg" />
                   <div>NexMeet</div>
                 </Link>
               ) : (
-                <Image
-                  src="/logo.png"
-                  alt="cover"
-                  width={40}
-                  height={40}
-                  className="flex-shrink-0"
-                />
+                <Image src="/logo.png" alt="cover" width={40} height={40} className="flex-shrink-0 rounded-lg" />
               ))}
             <div className="mt-8 text-white flex flex-col gap-x-4 gap-2">
               {links.map((link, idx) => {
-                const isActive = pathname === link.href;
+                const isActive = pathname === link.href
                 return (
                   <SidebarLink
-                    className={cn("px-2 rounded-xl", {
-                      "bg-blue-1": isActive,
+                    className={cn("px-3 py-2.5 rounded-xl transition-all duration-200 font-medium", {
+                      "bg-blue-1 shadow-lg": isActive,
+                      "hover:bg-dark-2": !isActive,
                     })}
                     key={idx}
                     link={link}
                   />
-                );
+                )
               })}
             </div>
           </div>
@@ -103,7 +96,7 @@ const Panel = () => {
         </SidebarBody>
       </Sidebar>
     </div>
-  );
-};
+  )
+}
 
-export default Panel;
+export default Panel
